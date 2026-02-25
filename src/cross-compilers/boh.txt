@@ -1,0 +1,4 @@
+
+typst:
+  preamble: |
+    #set text(ligatures: false)

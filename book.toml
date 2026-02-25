@@ -1,0 +1,11 @@
+[book]
+authors = ["michele13"]
+language = "en"
+src = "src"
+title = "My Itch From Scratch"
+
+[output.html]
+additional-css = ["src/custom.css"]
+
+[output.html.print]
+page-break = false

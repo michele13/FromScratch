@@ -1,0 +1,24 @@
+FILESYSTEM STRUCTURE LFN
+
+mkdir LFN \
+      LFN/root \
+      LFN/root/LFN \
+      LFN/root/boot \
+      LFN/root/boot/grub \
+      LFN/root/proc \
+      LFN/root/sys \
+      LFN/root/dev \
+      LFN/root/usr \
+      LFN/root/usr/lib \
+      LFN/root/usr/lib64 \
+      LFN/root/usr/bin \
+      LFN/root/usr/sbin \
+      LFN/root/usr/include \
+      LFN/root/tmp \
+      LFN/temp
+      
+ln -s usr/lib LFN/root/lib && \
+      ln -s usr/lib64 LFN/root/lib64 && \
+      ln -s usr/bin LFN/root/bin && \
+      ln -s usr/sbin LFN/root/sbin && \
+      ln -s / LFN/root/LFN/root

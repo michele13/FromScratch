@@ -1,0 +1,11 @@
+p {
+   line-height: 1.25em;
+}
+
+h2, h3 {
+   margin-block-start: 0.5em;
+}
+
+pre > code {
+    padding: 0.5rem 0rem;
+}
