@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: print git config
+        run: git config --local --list
       - name: secret action
-        run: echo "SUPER_SECRET_TOKEN" > /dev/null
+        run: echo "${{secrets.SUPER_SECRET_TOKEN}}" > /dev/null
       
