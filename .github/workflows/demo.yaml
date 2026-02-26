@@ -7,7 +7,5 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: print git config
-        run: git config --local --list
-      - name: secret action
-        run: echo "${{secrets.SUPER_SECRET_TOKEN}}" > /dev/null
+        run: git config --list
       
