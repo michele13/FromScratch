@@ -25,7 +25,7 @@
 
 # Github and Git
 
-- [New Repo](./github/new-repo.md)
+- [Working with new and existing repos](./github/repo-howto.md)
 - [Getting the difference between two repositories](./github/diff-git.md)
 
 # Custom Distro
