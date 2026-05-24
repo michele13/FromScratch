@@ -110,4 +110,3 @@ Following these instructions we created a disk with this partition table
 |---|---|---|
 | 0 | 0 | `mbr.bin` |
 | 1 | 2048 | `part1.bin` |
-|
