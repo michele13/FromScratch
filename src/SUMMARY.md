@@ -2,6 +2,7 @@
 
 [Introduction](README.md)
 
+- [Disk Image From Scratch](disk-image.md)
 
 # Compiling
 - [Compile static rust programs](./compiling/rust-static.md)
@@ -18,6 +19,7 @@
 - [Homelab Ideas](./Homelab/homelab_ideas.md)
 - [Mini Homelab](./Homelab/mini_homelab.md)
 - [IPXE Custom Server Tutorial](./Homelab/netboot-ipxe.md)
+- [OpenClaw selfhosted con Ollama](./Homelab/it/openclaw-ollama.md)
 
 # Linux From Scratch
 - [Linux From Scratch History](./LFS/lfs-history.md)
@@ -30,6 +32,14 @@
 
 # Custom Distro
 
+- [BrainfuckOS](./OS/BrainfuckOS.md)
+
 # Pakcage Managers
 
 # Other
+- [Regex for Markdown WIki - Incomplete](./markdown-wiki-regex.md)
+- [LLM Benchmarks](./LLM/benchmarks.md)
+
+# FAQ
+- [FAQ Index](FAQ/index.md)
+- [How to avoid NetworkManager overwriting /etc/resolv.conf?](./FAQ/resolv.conf)
