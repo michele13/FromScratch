@@ -37,9 +37,8 @@
 # Pakcage Managers
 
 # Other
-- [Regex for Markdown WIki - Incomplete](./markdown-wiki-regex.md)
 - [LLM Benchmarks](./LLM/benchmarks.md)
 
 # FAQ
 - [FAQ Index](FAQ/index.md)
-- [How to avoid NetworkManager overwriting /etc/resolv.conf?](./FAQ/resolv.conf)
+- [How to avoid NetworkManager overwriting /etc/resolv.conf?](./FAQ/resolv_conf.md)
