@@ -1,6 +1,7 @@
 # Introduction
 
-This book talks about creating a bunch of things from scratch
+This book is a collection of simple howtos, instructions on how to build things from scratch and [FAQs](./FAQ/index.md)
 
-- [Add custom page breaks in markdown](https://www.buildableweb.com/how-to-add-page-breaks-to-html-in-articles/)
+
+
 
