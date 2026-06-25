@@ -9,3 +9,27 @@ additional-css = ["src/custom.css"]
 
 [output.html.print]
 page-break = false
+
+
+# ----------
+# PDF Output
+# ----------
+
+[output.typst]
+optional = true
+
+[output.typst.output]
+format = "pdf"
+
+[output.typst.style]
+# paper = "us-letter"
+text-font = "Libertinus Serif"
+
+[output.typst.advanced]
+typst-markup-header = """
+#title[My Itch From Scratch]
+#set page(
+    header: align(center)[My Itch From Scratch],
+    numbering: "1",
+)
+"""
