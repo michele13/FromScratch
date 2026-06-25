@@ -18,9 +18,26 @@ Set the following environment variables
     MAKEFLAGS="-j$(nproc)"
     PATH="${OUTPUT}/bin:${PATH}"
     GCC_CONFIG_FOR_TARGET=""
+    COMMON_CONFIG=""
 
     export PATH OUTPUT KERNEL_ARCH TARGET HOST MAKEFLAGS
 ```
+
+if we have a musl cross-compiler available we can build our toolchain statically!
+
+```bash
+_cc="gcc"
+_cxx="g++"
+musl_cxx="$(which -- $(uname -m)-linux-musl-g++)"
+musl_cc="$(which -- $(uname -m)-linux-musl-gcc)"
+
+
+if [ -n "$musl_cxx" ]; then
+   _cc="$musl_cc -static --static" 
+   _cxx="$musl_cxx -static --static"
+fi
+```
+
 
 ### Download and extract the sources
 
@@ -92,7 +109,8 @@ Configure Binutils:
         --libdir=/lib --disable-multilib \
 	    --with-sysroot=/${TARGET} \
 	    --enable-deterministic-archives \
-        --build=${HOST} --host=${HOST}
+        --build=${HOST} --host=${HOST} \
+        ${COMMON_CONFIG} CC="${_cc}" CXX="${_cxx}"
 ```
 
 Build and install the package:
@@ -138,7 +156,8 @@ Configure GCC:
         --disable-libmpx \
         --enable-initfini-array \
         --enable-libstdcxx-time=rt \
-        ${GCC_CONFIG_FOR_TARGET}
+        ${GCC_CONFIG_FOR_TARGET} \
+        ${COMMON_CONFIG} CC="${_cc}" CXX="${_cxx}"
 ```
 
 Build the core of GCC

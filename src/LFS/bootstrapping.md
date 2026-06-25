@@ -106,7 +106,7 @@ we compile the package and install make to /cross-tools/bin
 
 ```
 
-# GNU Tar (static)
+### GNU Tar (static)
 
 We configure GNU TAR using the following command:
 

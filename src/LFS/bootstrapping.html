@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bootstrapping</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#bootstrapping-lfs-from-almost-nothing"
+id="toc-bootstrapping-lfs-from-almost-nothing">Bootstrapping LFS From
+Almost Nothing</a>
+<ul>
+<li><a href="#preparations" id="toc-preparations">1. Preparations</a>
+<ul>
+<li><a href="#setting-up-the-environment"
+id="toc-setting-up-the-environment">Setting up the Environment</a></li>
+<li><a href="#installing-the-cross-compiler"
+id="toc-installing-the-cross-compiler">Installing the Cross
+Compiler</a></li>
+<li><a href="#musl-dynamic-linker-ld-musl-i386.so.1"
+id="toc-musl-dynamic-linker-ld-musl-i386.so.1">Musl Dynamic Linker
+(ld-musl-i386.so.1)</a></li>
+<li><a href="#gnu-make-static" id="toc-gnu-make-static">GNU Make
+(static)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#gnu-tar-static" id="toc-gnu-tar-static">GNU Tar
+(static)</a>
+<ul>
+<li><a href="#build-lfs-tools" id="toc-build-lfs-tools">2. Build LFS
+tools</a>
+<ul>
+<li><a href="#binutils-and-gcc" id="toc-binutils-and-gcc">Binutils and
+GCC</a></li>
+<li><a href="#linux-headers" id="toc-linux-headers">Linux
+Headers</a></li>
+<li><a href="#glibc" id="toc-glibc">Glibc</a></li>
+<li><a href="#bison" id="toc-bison">Bison</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="bootstrapping-lfs-from-almost-nothing">Bootstrapping LFS From
+Almost Nothing</h1>
+<p>We will build LFS starting from a static busybox binary and a static
+musl cross-compiler.</p>
+<h2 id="preparations">1. Preparations</h2>
+<p>create a directory where to build LFS. We will be using a unsare
+container.</p>
+<pre class="shell"><code>
+mkdir -pv unshare-host/{bin,proc,sys,dev,root,lib}
+install -d -m 1777 unshare-root/tmp
+cp /bin/busybox unshare-host/bin/busybox
+for x in $(./unshare-host/bin/busybox --list); do
+  ln -s busybox ./unshare-host/bin/$x
+done
+</code></pre>
+<h3 id="setting-up-the-environment">Setting up the Environment</h3>
+<p>create a <code>.profile</code> file inside the root <em>HOME</em>
+directory of the container</p>
+<pre class="shell"><code>
+cat &gt; unshare-host/root/.profile &lt;&lt; &quot;EOF&quot;
+
+PATH=/static/bin:/cross-tools/bin:$PATH
+export PATH
+EOF
+</code></pre>
+<p>create a script that will be used to enter inside the container:</p>
+<pre class="shell"><code>
+cd unshare-host
+
+cat &gt; init &lt;&lt; &quot;EOF&quot;
+#!/bin/sh
+ROOT=$1
+[ -n &quot;$ROOT&quot; ] || ROOT=&quot;$PWD&quot;
+$ROOT/bin/busybox unshare -m -u -i -n -p -U -f -r --mount-proc chroot $ROOT /bin/busybox ash shell.sh
+EOF
+
+cat &gt; shell.sh &lt;&lt; &quot;EOF&quot;
+#!/bin/busybox ash
+[ -z &quot;$NOCLEAR&quot; ] &amp;&amp; exec env -i NOCLEAR=1 busybox ash &quot;$0&quot;
+unset NOCLEAR
+HOME=/root
+TERM=$TERM
+LANG=C
+LC_ALL=C
+PS1=&#39;\u:\w$ &#39;
+PATH=/usr/sbin:/usr/bin:/bin:/sbin
+export PATH HOME TERM PS1 LANG LC_ALL
+busybox mount -t proc none /proc
+busybox ash -l
+EOF
+
+chmod 755 init
+chmod 755 shell.sh
+</code></pre>
+<h3 id="installing-the-cross-compiler">Installing the Cross
+Compiler</h3>
+<p>Download and install a static cross-toolchain</p>
+<pre class="shell"><code>
+wget -c https://musl.cc/i686-linux-musl-cross.tgz
+tar xf i686-linux-musl-cross.tgz
+mv i686-linux-musl-cross cross-tools
+</code></pre>
+<h3 id="musl-dynamic-linker-ld-musl-i386.so.1">Musl Dynamic Linker
+(ld-musl-i386.so.1)</h3>
+<p>Copy the musl dinamyc linker to <code>/lib/</code> so we can execute
+dynamic programs</p>
+<pre class="shell"><code>  cp -a /cross-tools/i686-linux-musl/lib/libc.so /lib/
+  cp -a /cross-tools/i686-linux-musl/lib/ld-musl-i386.so.1 /lib/</code></pre>
+<h3 id="gnu-make-static">GNU Make (static)</h3>
+<p>We need make to build everything</p>
+<pre class="shell"><code>
+  LDFLAGS=&quot;-static&quot; ./configure --host=i686-linux-musl --prefix= \
+    --disable-dependency-tracking
+</code></pre>
+<p>we compile the package and install make to /cross-tools/bin</p>
+<pre class="shell"><code>
+  ./build.sh
+  cp make /static/bin/
+</code></pre>
+<h1 id="gnu-tar-static">GNU Tar (static)</h1>
+<p>We configure GNU TAR using the following command:</p>
+<pre class="shell"><code>  LDFLAGS=&quot;-static&quot; FORCE_UNSAFE_CONFIGURE=1 ./configure \
+    --host=i686-linux-musl --prefix=</code></pre>
+<p>then we build and install the tar binary</p>
+<pre class="shell"><code>  make
+  cp src/tar /static/bin/</code></pre>
+<h2 id="build-lfs-tools">2. Build LFS tools</h2>
+<h3 id="binutils-and-gcc">Binutils and GCC</h3>
+<p>Binutils and GCC build just fine</p>
+<h3 id="linux-headers">Linux Headers</h3>
+<p>We now build the linux headers:</p>
+<pre class="shell"><code>
+  make CC=&quot;$CC&quot; HOSTCC=&quot;$HOSTCC&quot; mrproper headers
+</code></pre>
+<p>Install the headers.</p>
+<pre class="shell"><code>
+  find usr/include -type f ! -name &#39;*.h&#39; -delete
+  cp -rv usr/include $LFS/usr
+</code></pre>
+<h3 id="glibc">Glibc</h3>
+<p><strong>Build Dependencies:</strong> Gawk, Bison and Python</p>
+<h3 id="bison">Bison</h3>
+<p><strong>Build Dependencies:</strong> m4</p>
+</body>
+</html>
