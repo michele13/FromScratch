@@ -1,0 +1,13 @@
+scripts/Makefile.build (used for compiling all normal objects)
+scripts/Makefile.host (used for host tools like fixdep — this is the one failing for you at line 104)
+
+find . \( -name "Makefile.build" -o -name "Makefile.host" \) \
+  -exec sed -i -E 's/-Wp,-M(M?)D,(\$\([A-Za-z_]+\))/-M\1D -MF \2/g' {} +
+This turns -Wp,-MD,$(depfile) into -MD -MF $(depfile)
+
+---
+
+sed -i.orig 's/-Wp,-MD,\$(depfile)/-MD -MF $(depfile)/g' scripts/Makefile.build scripts/Makefile.host
+
+sed -i.orig 's/#define N_(text) (text)/#define N_(text) text/' scripts/kconfig/lkc.h
+

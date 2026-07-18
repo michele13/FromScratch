@@ -110,6 +110,7 @@ Download the source tarballs:
 
 ```bash
     mkdir -p ${SOURCES} ${DOWNLOADS}; cd ${DOWNLOADS}
+    if [ ! -f "${DOWNLOADS}/.dl_complete ]; then
 	wget -c https://sourceware.org/pub/binutils/releases/binutils-$binutils_ver.tar.xz
 	wget -c https://ftp.gnu.org/gnu/gcc/gcc-$gcc_ver/gcc-$gcc_ver.tar.xz
 	wget -c https://ftp.gnu.org/gnu/glibc/glibc-$glibc_ver.tar.gz
@@ -117,7 +118,15 @@ Download the source tarballs:
 	wget -c https://ftp.gnu.org/gnu/mpc/mpc-$mpc_ver.tar.gz
 	wget -c https://ftp.gnu.org/gnu/mpfr/mpfr-$mpfr_ver.tar.xz
 	wget -c https://www.kernel.org/pub/linux/kernel/v6.x/linux-$linux_ver.tar.xz
+    fi
 ```
+
+If the download went fine we will create a file called `.dl_complete` so that we will not run wget again
+
+```bash
+	touch .dl_complete
+```
+
 
 Extract every tar archive into the sources directory:
 

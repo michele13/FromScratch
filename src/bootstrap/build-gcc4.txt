@@ -1,0 +1,132 @@
+LDFLAGS="-static" CXX="missing" MAKEINFO="true" CC=musl-tcc ../gcc-4.7.4/configure --target="x86_64-linux" --prefix="/tmp/gcc4" --without-headers --enable-languages=c --disable-multilib --disable-nls --disable-shared --enable-static
+
+
+make all-gcc
+
+-----
+
+non riesco a compilare all-target-libgcc. 
+
+checking for x86_64-lfs-linux-gnu-gcc...  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include   
+checking for suffix of object files... configure: error: in `/home/michele/tmp/musl-tcc/build-gcc/x86_64-lfs-linux-gnu/libgcc':
+configure: error: cannot compute suffix of object files: cannot compile
+See `config.log' for more details.
+make: *** [Makefile:10905: configure-target-libgcc] Error 1
+
+MAKEINFO="true" LDFLAGS="-static" CXX="missing" CC=musl-tcc ../gcc-4.7.4/configure --build="x86_64-cross-linux-gnu" --target="x86_64-lfs-linux-gnu" --with-newlib  --without-headers --enable-languages=c --disable-multilib --disable-nls --disable-shared --enable-static  --prefix=/tmp/gcc4 --disable-libssp --disable-libgomp --disable-threads 
+
+grep -A30 -B10 "cannot compute suffix" config.log
+
+| /* end confdefs.h.  */
+| 
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3602: error: in `/home/michele/tmp/musl-tcc/build-gcc/x86_64-lfs-linux-gnu/libgcc':
+configure:3605: error: cannot compute suffix of object files: cannot compile
+See `config.log' for more details.
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=x86_64-cross-linux-gnu
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=' /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include   '
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value='-O2 -g'
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=set
+ac_cv_env_build_alias_value=x86_64-cross-linux-gnu
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-lfs-linux-gnu
+ac_cv_env_target_alias_set=set
+ac_cv_env_target_alias_value=x86_64-lfs-linux-gnu
+ac_cv_host=x86_64-lfs-linux-gnu
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_AR=x86_64-lfs-linux-gnu-ar
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=' /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include 
+
+grep -A20 -B20 conftest config.log
+
+
+configure:3355: $? = 0
+configure:3344:  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -v >&5
+Reading specs from /home/michele/tmp/musl-tcc/build-gcc/./gcc/specs
+COLLECT_GCC=/home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc
+COLLECT_LTO_WRAPPER=/home/michele/tmp/musl-tcc/build-gcc/./gcc/lto-wrapper
+Target: x86_64-lfs-linux-gnu
+Configured with: ../gcc-4.7.4/configure --build=x86_64-cross-linux-gnu --target=x86_64-lfs-linux-gnu --with-newlib --without-headers --enable-languages=c --disable-multilib --disable-nls --disable-shared --enable-static --prefix=/tmp/gcc4 --disable-libssp --disable-libgomp --disable-threads
+Thread model: single
+gcc version 4.7.4 (GCC) 
+configure:3355: $? = 0
+configure:3344:  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -V >&5
+xgcc: error: unrecognized command line option '-V'
+xgcc: fatal error: no input files
+compilation terminated.
+configure:3355: $? = 1
+configure:3344:  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -qversion >&5
+xgcc: error: unrecognized command line option '-qversion'
+xgcc: fatal error: no input files
+compilation terminated.
+configure:3355: $? = 1
+configure:3371:  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -o conftest -O2 -g   conftest.c  >&5
+/home/michele/tmp/musl-tcc/build-gcc/./gcc/as: 87: exec: --64: not found
+configure:3374: $? = 1
+configure:3562: checking for suffix of object files
+configure:3584:  /home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -c -O2 -g  conftest.c >&5
+/home/michele/tmp/musl-tcc/build-gcc/./gcc/as: 87: exec: --64: not found
+configure:3588: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "GNU C Runtime Library"
+| #define PACKAGE_TARNAME "libgcc"
+| #define PACKAGE_VERSION "1.0"
+| #define PACKAGE_STRING "GNU C Runtime Library 1.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL "http://www.gnu.org/software/libgcc/"
+| /* end confdefs.h.  */
+| 
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3602: error: in `/home/michele/tmp/musl-tcc/build-gcc/x86_64-lfs-linux-gnu/libgcc':
+
+
+
+
+--------------
+
+LDFLAGS="-static" CXX="missing" MAKEINFO="true" CC=musl-tcc ../gcc-4.7.4/configure --target="x86_64-linux" --prefix="/tmp/gcc4" --without-headers --enable-languages=c --disable-multilib --disable-nls --disable-shared --enable-static
+
+make all-gcc all-target-libgcc
+
+
+/home/michele/tmp/musl-tcc/build-gcc/./gcc/xgcc -B/home/michele/tmp/musl-tcc/build-gcc/./gcc/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/bin/ -B/tmp/gcc4/x86_64-lfs-linux-gnu/lib/ -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/include -isystem /tmp/gcc4/x86_64-lfs-linux-gnu/sys-include    -O2 -g -O2  -O2 -g -DIN_GCC -DCROSS_DIRECTORY_STRUCTURE  -W -Wall -Wno-narrowing -Wwrite-strings -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition  -isystem ./include  -fpic -g -DIN_LIBGCC2 -fbuilding-libgcc -fno-stack-protector -Dinhibit_libc -fpic -I. -I. -I../.././gcc -I../../../gcc-4.7.4/libgcc -I../../../gcc-4.7.4/libgcc/. -I../../../gcc-4.7.4/libgcc/../gcc -I../../../gcc-4.7.4/libgcc/../include -I../../../gcc-4.7.4/libgcc/config/libbid -DENABLE_DECIMAL_BID_FORMAT -DHAVE_CC_TLS  -DUSE_TLS -o bid_decimal_globals.o -MT bid_decimal_globals.o -MD -MP -MF bid_decimal_globals.dep -c ../../../gcc-4.7.4/libgcc/config/libbid/bid_decimal_globals.c
+../../../gcc-4.7.4/libgcc/config/libbid/bid_decimal_globals.c:47:18: fatal error: fenv.h: No such file or directory
+compilation terminated.
+make[1]: *** [Makefile:607: bid_decimal_globals.o] Error 1
+make[1]: Leaving directory '/home/michele/tmp/musl-tcc/build-gcc/x86_64-lfs-linux-gnu/libgcc'
+make: *** [Makefile:10967: all-target-libgcc] Error 2
+
+
+michele@michele-pve:~/tmp/musl-tcc/build-gcc$ find ../gcc-4.7.4/ . -iname fenv.h
+../gcc-4.7.4/libstdc++-v3/include/c_compatibility/fenv.h
+../gcc-4.7.4/libstdc++-v3/include/tr1/fenv.h
+

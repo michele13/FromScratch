@@ -56,14 +56,23 @@ Download the source tarballs:
 
 ```bash
     mkdir -p ${SOURCES} ${DOWNLOADS}; cd ${DOWNLOADS}
-	wget -c https://sourceware.org/pub/binutils/releases/binutils-$binutils_ver.tar.xz
-	wget -c https://ftp.gnu.org/gnu/gcc/gcc-$gcc_ver/gcc-$gcc_ver.tar.xz
+    if [ ! -f ${DOWNLOADS}/.dl_complete ]; then
+	wget -c https://ftpmirror.gnu.org/binutils/binutils-$binutils_ver.tar.xz
+	wget -c https://ftpmirror.gnu.org/gcc/gcc-$gcc_ver/gcc-$gcc_ver.tar.xz
 	wget -c https://musl.libc.org/releases/musl-$musl_ver.tar.gz
-	wget -c https://ftp.gnu.org/gnu/gmp/gmp-$gmp_ver.tar.xz
-	wget -c https://ftp.gnu.org/gnu/mpc/mpc-$mpc_ver.tar.gz
-	wget -c https://ftp.gnu.org/gnu/mpfr/mpfr-$mpfr_ver.tar.xz
+	wget -c https://ftpmirror.gnu.org/gmp/gmp-$gmp_ver.tar.xz
+	wget -c https://ftpmirror.gnu.org/mpc/mpc-$mpc_ver.tar.gz
+	wget -c https://ftpmirror.gnu.org/mpfr/mpfr-$mpfr_ver.tar.xz
 	wget -c https://www.kernel.org/pub/linux/kernel/v6.x/linux-$linux_ver.tar.xz
+    fi
 ```
+
+If the download went fine we will create a file called `.dl_complete` so that we will not run wget again
+
+```bash
+	touch .dl_complete
+```
+
 Extract the sources:
 
 ```bash
