@@ -1,4 +1,4 @@
-# Portable TCC with Musl Libc
+# Portable TCC Toolchain with Musl Libc
 
 This guide will compile a static toolchain based on tcc and musl that creates static executables
 

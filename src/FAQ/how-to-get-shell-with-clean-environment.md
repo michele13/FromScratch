@@ -11,7 +11,7 @@ This is the **Bash version**
 
 ```bash
 cat > enter-bash-env.sh << "EOF"
-env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' bash --rcfile .local/env
+env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' bash --norc --rcfile .local/env
 EOF
 ```
 This is the **Unix shell version**

@@ -4,6 +4,12 @@
 
 - [Disk Image From Scratch](disk-image.md)
 
+## Bootstrapping
+
+- [Portable TCC Toolchain with Musl Libc](bootstrap/portable-tcc-musl.md)
+- [Bootstrap Musl Libc with TCC](bootstrap/tcc-musl.md)
+
+
 ## Compiling
 
 - [Compile static rust programs](compiling/rust-static.md)
@@ -30,6 +36,7 @@
 
 - [Linux From Scratch History](LFS/lfs-history.md)
 - [Bootstrapping LFS From Almost Nothing](LFS/bootstrapping.md)
+- [Difference Between SysVinit and SystemD](LFS/lfs-sysv-vs-systemd.md)
 
 ## Github and Git
 
@@ -42,17 +49,32 @@
 
 ## Pakcage Managers
 
+## QEMU
+
+- [QEMU Build Instructions](QEMU/qemu-build.md)
+- [QEMU Monitor](QEMU/qemu-monitor.md)
+- [Generic QEMU Machine x86_64 UEFI](QEMU/qemu-vm.md)
+
 ## Other
 
 - [LLM Benchmarks](LLM/benchmarks.md)
 
-# AI
+## AI
 
 - [OpenCloud Podman Rootless Setup (Gemini AI)](AI/Gemini/podman-opencloud-gemini.md)
 - [LFS Non-Root Environment Setup Script (Gemini AI)](AI/Gemini/lfs-non-root-environment-setup.md)
 
-# FAQ
+## FAQ
 - [FAQ Index](FAQ/index.md)
 - [How to avoid NetworkManager overwriting /etc/resolv.conf?](FAQ/resolv_conf.md)
 - [How to find files not included in SUMMARY.md?](FAQ/organize-summary.md)
 - [How to get a shell with clean environment?](FAQ/how-to-get-shell-with-clean-environment.md)
+
+----
+
+[Summary](SUMMARY.md)
+
+
+
+
+

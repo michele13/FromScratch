@@ -1,9 +1,12 @@
-# QEMU command-line: behavior of ‘-serial stdio’ vs. ‘-serial mon:stdio’
+# QEMU display on terminal and QEMU monitor
+
+QEMU command-line: behavior of ‘-serial stdio’ vs. ‘-serial mon:stdio’
 
 Original Source: <https://kashyapc.wordpress.com/2016/02/11/qemu-command-line-behavior-of-serial-stdio-vs-serial-monstdio/>
 
 I forget to remember: to avoid QEMU being terminated on SIGINT (Ctrl+c), instead of just `stdio`, supply the special parameter `mon:stdio` to `-serial` option (which redirects the virtual serial port to a host character device). The subtle difference between them:
 
+- `-monitor stdio`: Redirects QEMU monitor to the terminal window
 - `-serial stdio`: Redirects the virtual serial port onto stdio; upon Ctrl+c, QEMU immediately terminates.
 - `-serial mon:stdio`: In this mode, the virtual serial port and QEMU monitor are multiplexed onto stdio. And Ctrl+c is handled, i.e. QEMU won’t be terminated, and the signal will be passed to the guest.
 

@@ -1,10 +1,10 @@
 # Bootstrapping LFS From Almost Nothing
 
-We will build LFS starting from a static busybox binary and a static musl cross-compiler.
+We will build LFS (At this time 12.1) starting from a static busybox binary and a static musl cross-compiler.
 
 ## 1. Preparations
 
-create a directory where to build LFS. We will be using a unsare container.
+create a directory where to build LFS. We will be using a unshare container.
 
 ```shell
 
@@ -41,7 +41,7 @@ cat > init << "EOF"
 #!/bin/sh
 ROOT=$1
 [ -n "$ROOT" ] || ROOT="$PWD"
-$ROOT/bin/busybox unshare -m -u -i -n -p -U -f -r --mount-proc chroot $ROOT /bin/busybox ash shell.sh
+$ROOT/bin/busybox unshare -m -u -i -n -p -U -f -r --mount-proc $ROOT/bin/chroot $ROOT /bin/busybox ash shell.sh
 EOF
 
 cat > shell.sh << "EOF"
