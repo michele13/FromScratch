@@ -20,6 +20,7 @@
 
 - [Compile static rust programs](compiling/rust-static.md)
 - [Compiling MdBook](compiling/mdbook.md)
+- [Static Sphinx](compiling/static-sphinx.md)
 
 ## Cross Compilers
 
