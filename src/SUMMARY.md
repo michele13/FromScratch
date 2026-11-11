@@ -40,6 +40,7 @@
 
 ## Github and Git
 
+- [How to change last commit](github/change-last-commit.md)
 - [Working with new and existing repos](github/repo-howto.md)
 - [Getting the difference between two repositories](github/diff-git.md)
   
