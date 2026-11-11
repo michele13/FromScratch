@@ -6,6 +6,7 @@
 
 ## AI
 
+- [Dpkg Notes](AI/Gemini/dpkg.md)
 - [OpenCloud Podman Rootless Setup (Gemini AI)](AI/Gemini/podman-opencloud-gemini.md)
 - [LFS Non-Root Environment Setup Script (Gemini AI)](AI/Gemini/lfs-non-root-environment-setup.md)
 - [LLM Benchmarks](LLM/benchmarks.md)
