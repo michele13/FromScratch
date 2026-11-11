@@ -33,10 +33,12 @@
 - [BrainfuckOS](OS/BrainfuckOS.md)
 
 ## FAQ
+
 - [FAQ Index](FAQ/index.md)
 - [How to avoid NetworkManager overwriting /etc/resolv.conf?](FAQ/resolv_conf.md)
 - [How to find files not included in SUMMARY.md?](FAQ/organize-summary.md)
 - [How to get a shell with clean environment?](FAQ/how-to-get-shell-with-clean-environment.md)
+- [How to download a Sourceforge Folder](FAQ/how-to-download-sourceforge-folder.md)
 
 ## Github and Git
 
